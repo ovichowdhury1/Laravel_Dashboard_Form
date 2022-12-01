@@ -1,0 +1,23 @@
+
+  <div class="mb-3 row">
+                                <label id="input_range_id_label" class="col-md-2 col-form-label" for="input_range_id">
+                                    Discount<span class="text-danger">*</span>
+                                </label>
+                                <div class="col-md-10">
+                                    <input type="range"  id="input_range_id" class="form-range" id="discount" name="discount" value="0">
+                            </div>
+
+
+
+
+ // inout range value track 
+        window.addEventListener('load', function () {
+            input_range.value = 0;
+            input_range_label.innerHTML= `Discount<span class=\"text-danger\">*</span> ${input_range.value}%`;
+            // input_range.setAttribute("input_range_id_label", "B B");
+	    });
+        $("#input_range_id").change(function(){
+            $('#input_range_id_label').html(`Discount<span class=\"text-danger\">*</span> ${$(this).val()}%`);
+            $("#input_range_id").value = $(this).val();
+            });
+

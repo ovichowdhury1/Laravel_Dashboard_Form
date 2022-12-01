@@ -1,0 +1,688 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ADMIN-BLOG</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <!-- Favicon Link -->
+    <link rel="shortcut icon" type="image/png" href="http://192.168.0.155:8000/medi-pharma-favicon.png">
+
+    <!--Start Style -->
+<link rel="stylesheet" type="text/css" href="http://192.168.0.155:8000/back/css/fonts.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+<link rel="stylesheet" type="text/css" href="http://192.168.0.155:8000/back/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="http://192.168.0.155:8000/back/css/icofont.min.css">
+<link rel="stylesheet" type="text/css" href="http://192.168.0.155:8000/back/css/datatables.css">
+<link rel="stylesheet" type="text/css" href="http://192.168.0.155:8000/back/css/style.css">
+<link rel="stylesheet" id="theme-change" type="text/css" href="#">
+<!--Page Specific -->
+        <style>
+        .image-preview-container {
+            margin: 0 auto;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            padding: 3rem;
+            border-radius: 20px;
+        }
+
+        .image-preview-container img {
+            width: 100%;
+            display: none;
+            margin-bottom: 30px;
+        }
+
+        .image-preview-container input {
+            display: none;
+        }
+
+        .image-preview-container label {
+            display: block;
+            width: 45%;
+            height: 45px;
+            margin-left: 25%;
+            text-align: center;
+            background: #8338ec;
+            color: #fff;
+            font-size: 15px;
+            text-transform: Uppercase;
+            font-weight: 400;
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+        
+    <!-- Main Body -->
+    <div class="page-wrapper">
+        <!-- Header Start -->
+<header class="header-wrapper main-header">
+    <div class="header-inner-wrapper">
+        <div class="header-right">
+            <div class="serch-wrapper">
+                <form>
+                    <input type="text" placeholder="Search Here...">
+                </form>
+                <a class="search-close" href="javascript:void(0);"><span class="icofont-close-line"></span></a>
+            </div>
+            <div class="header-left">
+                <div class="header-links">
+                    <a href="javascript:void(0);" class="toggle-btn">
+                        <span></span>
+                    </a>
+                </div>
+                <div class="header-links search-link">
+                    <a class="search-toggle" href="javascript:void(0);">
+                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                            viewbox="0 0 56.966 56.966" style="enable-background:new 0 0 56.966 56.966;"
+                            xml:space="preserve">
+                            <path
+                                d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23
+                            s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92
+                            c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17
+                            s-17-7.626-17-17S14.61,6,23.984,6z">
+                            </path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="header-controls">
+                <div class="user-info-wrapper header-links">
+                    <a href="javascript:void(0);" class="user-info">
+                        <img src="http://192.168.0.155:8000/back/images/user.jpg" alt="" class="user-img">
+                        <div class="blink-animation">
+                            <span class="blink-circle"></span>
+                            <span class="main-circle"></span>
+                        </div>
+                    </a>
+                    <div class="user-info-box">
+                        <div class="drop-down-header">
+                            <h4>SUPER ADMIN</h4>
+                        </div>
+                        <ul>
+                            
+                            <li>
+                                <a href="http://192.168.0.155:8000/logout"
+                                    onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                    <i class="fas fa-sign-out-alt"></i> logout
+                                </a>
+
+                                <form id="logout-form" action="http://192.168.0.155:8000/logout" method="POST" class="d-none">
+                                    <input type="hidden" name="_token" value="IQnYjJLFwvP22GuL7kRGvEFv7I7uHts430qUGROi">                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+        <!-- Sidebar Start -->
+<aside class="sidebar-wrapper">
+    <div class="logo-wrapper">
+        <a href="index.html" class="admin-logo">
+            <img src="http://192.168.0.155:8000/back/images/logo.png" alt="" class="sp_logo">
+            <img src="http://192.168.0.155:8000/medi-pharma-favicon.png" alt="" class="sp_mini_logo">
+        </a>
+    </div>
+    <div class="side-menu-wrap">
+        <ul class="main-menu">
+            <li>
+                <a href="javascript:void(0);" class="active">
+                    <span class="icon-menu feather-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <line x1="3" y1="12" x2="21" y2="12"></line>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <line x1="3" y1="18" x2="21" y2="18"></line>
+                        </svg>
+                    </span>
+                    <span class="menu-text">
+                        NAVS
+                    </span>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a href="http://192.168.0.155:8000/nav/create">
+                            <span class="icon-dash">
+                            </span>
+                            <span class="menu-text">
+                                ADD NAV
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://192.168.0.155:8000/nav">
+                            <span class="icon-dash">
+                            </span>
+                            <span class="menu-text">
+                                ALL NAVS
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:void(0);" class="active">
+                    <span class="icon-menu feather-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <line x1="8" y1="6" x2="21" y2="6"></line>
+                            <line x1="8" y1="12" x2="21" y2="12"></line>
+                            <line x1="8" y1="18" x2="21" y2="18"></line>
+                            <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                            <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                            <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                        </svg>
+                    </span>
+                    <span class="menu-text">
+                        CATAGORIES
+                    </span>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a href="http://192.168.0.155:8000/cat/create">
+                            <span class="icon-dash">
+                            </span>
+                            <span class="menu-text">
+                                ADD CATEGORY
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://192.168.0.155:8000/cat">
+                            <span class="icon-dash">
+                            </span>
+                            <span class="menu-text">
+                                ALL CATEGORIES
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:void(0);" class="active">
+                    <span class="icon-menu feather-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <polyline points="4 7 4 4 20 4 20 7"></polyline>
+                            <line x1="9" y1="20" x2="15" y2="20"></line>
+                            <line x1="12" y1="4" x2="12" y2="20"></line>
+                        </svg>
+                    </span>
+                    <span class="menu-text">
+                        PRODUCT TYPE
+                    </span>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a href="http://192.168.0.155:8000/type/create">
+                            <span class="icon-dash">
+                            </span>
+                            <span class="menu-text">
+                                ADD PRODUCT TYPE
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://192.168.0.155:8000/type">
+                            <span class="icon-dash">
+                            </span>
+                            <span class="menu-text">
+                                ALL PRODUCT TYPES
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:void(0);" class="active">
+                    <span class="icon-menu feather-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path
+                                d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z">
+                            </path>
+                        </svg>
+                    </span>
+                    <span class="menu-text">
+                        MANUFECTURER
+                    </span>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a href="http://192.168.0.155:8000/manufecturer/create">
+                            <span class="icon-dash">
+                            </span>
+                            <span class="menu-text">
+                                ADD MANUFECTURER
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://192.168.0.155:8000/manufecturer">
+                            <span class="icon-dash">
+                            </span>
+                            <span class="menu-text">
+                                ALL MANUFECTURERS
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:void(0);" class="active">
+                    <span class="icon-menu feather-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <line x1="4" y1="21" x2="4" y2="14"></line>
+                            <line x1="4" y1="10" x2="4" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="12"></line>
+                            <line x1="12" y1="8" x2="12" y2="3"></line>
+                            <line x1="20" y1="21" x2="20" y2="16"></line>
+                            <line x1="20" y1="12" x2="20" y2="3"></line>
+                            <line x1="1" y1="14" x2="7" y2="14"></line>
+                            <line x1="9" y1="8" x2="15" y2="8"></line>
+                            <line x1="17" y1="16" x2="23" y2="16"></line>
+                        </svg>
+                    </span>
+                    <span class="menu-text">
+                        BANNER
+                    </span>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a href="http://192.168.0.155:8000/banner/create">
+                            <span class="icon-dash">
+                            </span>
+                            <span class="menu-text">
+                                ADD BANNER
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://192.168.0.155:8000/banner">
+                            <span class="icon-dash">
+                            </span>
+                            <span class="menu-text">
+                                ALL BANNERS
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:void(0);" class="active">
+                    <span class="icon-menu feather-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="8" rx="2"
+                                ry="2"></rect>
+                            <rect x="2" y="14" width="20" height="8" rx="2"
+                                ry="2"></rect>
+                            <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                            <line x1="6" y1="18" x2="6.01" y2="18"></line>
+                        </svg>
+                    </span>
+                    <span class="menu-text">
+                        BLOG
+                    </span>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a href="http://192.168.0.155:8000/blog/create">
+                            <span class="icon-dash">
+                            </span>
+                            <span class="menu-text">
+                                ADD BLOG
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://192.168.0.155:8000/blog">
+                            <span class="icon-dash">
+                            </span>
+                            <span class="menu-text">
+                                ALL BLOGS
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            
+        </ul>
+    </div>
+</aside>
+        <!-- Container Start -->
+        <div class="page-wrapper">
+            <div class="main-content">
+                <!-- Page Title Start -->
+                <div class="row">
+                    <div class="colxl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="page-title-wrapper">
+                            <div class="page-title-box">
+                                <h4 class="page-title bold">ADD BLOG</h4>
+                            </div>
+                            <div class="breadcrumb-list">
+                                <ul>
+                                    <li class="breadcrumb-link">
+                                        <a href="http://192.168.0.155:8000/home"><i class="fas fa-home mr-2"></i>Dashboard</a>
+                                    </li>
+                                    <li class="breadcrumb-link active">ADD</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    <div class="col-md-10 offset-md-1">
+        <div class="card">
+            <div class="card-header" style="padding: 10px 20px !important;">
+                <div class="text-center d-flex justify-content-between">
+                    <div class="my-auto">
+                        <h5>ADD BLOG</h5>
+                    </div>
+                    <a class="btn btn-primary" href="http://192.168.0.155:8000/blog">BACK TO ALL</a>
+                </div>
+            </div>
+            <div class="card-body">
+                <form action="http://192.168.0.155:8000/blog" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="_token" value="IQnYjJLFwvP22GuL7kRGvEFv7I7uHts430qUGROi">                    <div class="row">
+                        <div class="col-12">
+                            <div class="mb-3 row">
+                                <label class="col-md-2 col-form-label" for="typeID">
+                                    Type ID<span class="text-danger">*</span>
+                                </label>
+                                <div class="col-md-10">
+                                    <select class="form-control" id="typeID" name="type_id">
+                                        <option>Large select</option>
+                                    </select>
+                            </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label class="col-md-2 col-form-label" for="menufacturerID">
+                                    Menufacturer ID<span class="text-danger">*</span>
+                                </label>
+                                <div class="col-md-10">
+                                    <select class="form-control" id="menufacturerID" name="menufacturer_id">
+                                        <option>Large select</option>
+                                    </select>
+                            </div>
+                           </div>
+                            <div class="mb-3 row">
+                                <label class="col-md-2 col-form-label" for="inputNameEn">
+                                    Name EN<span class="text-danger">*</span>
+                                </label>
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control" name="name_en" id="inputNameEn"
+                                        placeholder="INPUT Name-EN" value="">
+                                                                    </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label class="col-md-2 col-form-label" for="inputNamebn">
+                                    Name BN<span class="text-danger">*</span>
+                                </label>
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control" name="name_bn" id="inputTitlebn"
+                                        placeholder="INPUT Name-BN" value="">
+                                                                    </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label class="col-md-2 col-form-label" for="generic">
+                                    Generic<span class="text-danger">*</span>
+                                </label>
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control" name=generic" id="generic"
+                                        placeholder="INPUT Generic" value="">
+                                                                    </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label class="col-md-2 col-form-label" for="price">
+                                    Price<span class="text-danger">*</span>
+                                </label>
+                                <div class="col-md-10">
+                                    <input type="number" class="form-control" name="title_bn" id="price"
+                                        placeholder="INPUT Price" value=""></div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label id="input_range_id_label" class="col-md-2 col-form-label" for="input_range_id">
+                                    Discount<span class="text-danger">*</span>
+                                </label>
+                                <div class="col-md-10">
+                                    <input type="range"  id="input_range_id" class="form-range" id="discount" name="discount" value="0">
+                            </div>
+
+                            <div class="mb-3 row">
+                                <label class="col-md-2 col-form-label" for="summernote-en">
+                                    DESCRIPTION-EN<span class="text-danger">*</span>
+                                </label>
+                                <div class="col-md-10">
+                                    <textarea class="form-control editor" id="summernote-en" style="height:150px" name="description_en"
+                                        placeholder="DESCRIPTION-EN"></textarea>
+                                                                    </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label class="col-md-2 col-form-label" for="summernote-bn">
+                                    DESCRIPTION-BN<span class="text-danger">*</span>
+                                </label>
+                                <div class="col-md-10">
+                                    <textarea class="form-control editor" id="summernote-bn" style="height:150px" name="description_bn"
+                                        placeholder="DESCRIPTION-BN"></textarea>
+                                                                    </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-md-2 col-form-label" for="keyword">
+                                keyword<span class="text-danger">*</span>
+                            </label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" name="keyword" id="keyword"
+                                    placeholder="INPUT Keyword" value="">
+                                                                </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-md-2 col-form-label" for="keyword">
+                                keyword<span class="text-danger">*</span>
+                            </label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" name="keyword" id="keyword"
+                                    placeholder="INPUT Keyword" value="">
+                                                                </div>
+                        </div>
+                        <div class="form-check mb-3 row">
+                            <div class="col-md-10">
+                                <input class="form-check-input" type="checkbox" name="stock_status" value="" id="stockStatus">
+                                <label class="form-check-label px-3" for="stockStatus">
+                                  Stock Status
+                                </label>
+                           </div> 
+    
+                          </div>
+                          
+                        <div class="col-md-8">
+                            <div class="col-12">
+                                <div class="mb-3 row">
+                                    <label class="col-md-3 col-form-label" for="inputTitle">
+                                        ALT TEXT<span class="text-danger">*</span>
+                                    </label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="alt_text" id="inputTitle"
+                                            placeholder="INPUT ALT TEXT" value="">
+                                                                            </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label class="col-md-3 col-form-label" for="inputMetadescription">
+                                        META DESCRIPTION<span class="text-danger">*</span>
+                                    </label>
+                                    <div class="col-md-9">
+                                        <textarea class="form-control" id="inputMetadescription" style="height:90px" name="meta_description"
+                                            placeholder="META DESCRIPTION"></textarea>
+                                                                            </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label class="col-md-3 col-form-label" for="inputTitle">
+                                        KEYWORD<span class="text-danger">*</span>
+                                    </label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="keyword" id="inputTitle"
+                                            placeholder="INPUT KEYWORD" value="">
+                                                                            </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="image-preview-container">
+                                <div class="preview">
+                                    <img id="preview-selected-image" />
+                                </div>
+                                <label for="file-upload">PICTURE:</label>
+                                <input type="file" id="file-upload" name="picture" accept="image/*"
+                                    onchange="previewImage(event);" />
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center mt-4">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                     <div class="col-12">
+                            <div class="mb-3 row">
+                                <label class="col-md-2 col-form-label" for="inputTitleen">
+                                    Type ID<span class="text-danger">*</span>
+                                </label>
+                                <div class="col-md-10">
+                                    <select class="form-control form-control-lg">
+                                        <option>Large select</option>
+                                    </select>
+                            </div>
+                            <div class="mb-3 row">
+                                <label class="col-md-2 col-form-label" for="inputTitlebn">
+                                    TITLE-BN<span class="text-danger">*</span>
+                                </label>
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control" name="title_bn" id="inputTitlebn"
+                                        placeholder="INPUT TITLE-BN" value="">
+                                                                    </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label class="col-md-2 col-form-label" for="summernote-en">
+                                    DESCRIPTION-EN<span class="text-danger">*</span>
+                                </label>
+                                <div class="col-md-10">
+                                    <textarea class="form-control editor" id="summernote-en" style="height:150px" name="description_en"
+                                        placeholder="DESCRIPTION-EN"></textarea>
+                                                                    </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label class="col-md-2 col-form-label" for="summernote-bn">
+                                    DESCRIPTION-BN<span class="text-danger">*</span>
+                                </label>
+                                <div class="col-md-10">
+                                    <textarea class="form-control editor" id="summernote-bn" style="height:150px" name="description_bn"
+                                        placeholder="DESCRIPTION-BN"></textarea>
+                                                                    </div>
+                            </div>
+                        </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+                <div class="ad-footer-btm">
+                    <p>Copyright 2022 © TECH-BUNGALOW All Rights Reserved.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Script Start -->
+<script src="http://192.168.0.155:8000/back/js/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+<script src="http://192.168.0.155:8000/back/js/apexchart/apexcharts.min.js"></script>
+<script src="http://192.168.0.155:8000/back/js/apexchart/control-chart-apexcharts.js"></script>
+<!-- Page Specific -->
+<script src="http://192.168.0.155:8000/back/js/nice-select.min.js"></script>
+<script src="http://192.168.0.155:8000/back/js/datatables.min.js"></script>
+<script src="http://192.168.0.155:8000/back/js/dataTables.responsive.min.js"></script>
+<!-- Custom Script -->
+<script src="http://192.168.0.155:8000/back/js/custom.js"></script>
+        <script src="https://cdn.ckeditor.com/4.12.1/standard/ckeditor.js"></script>
+    <script type="text/javascript">
+        $(".editor").each(function () {
+            let id = $(this).attr('id');
+            CKEDITOR.replace(id, {
+                filebrowserUploadUrl: "http://192.168.0.155:8000/ckeditor/upload?_token=IQnYjJLFwvP22GuL7kRGvEFv7I7uHts430qUGROi",
+                filebrowserUploadMethod: 'form',
+                height: 250,
+            });
+        });
+
+        const input_range = document.getElementById('input_range_id');
+        const input_range_label= document.getElementById('input_range_id_label');
+        // inout range value track 
+        window.addEventListener('load', function () {
+            input_range.value = 0;
+            input_range_label.innerHTML= `Discount<span class=\"text-danger\">*</span> ${input_range.value}%`;
+            // input_range.setAttribute("input_range_id_label", "B B");
+	    });
+        $("#input_range_id").change(function(){
+            $('#input_range_id_label').html(`Discount<span class=\"text-danger\">*</span> ${$(this).val()}%`);
+            $("#input_range_id").value = $(this).val();
+            });
+
+        /**
+         * Create an arrow function that will be called when an image is selected.
+         */
+        const previewImage = (event) => {
+            /**
+             * Get the selected files.
+             */
+            const imageFiles = event.target.files;
+            /**
+             * Count the number of files selected.
+             */
+            const imageFilesLength = imageFiles.length;
+            /**
+             * If at least one image is selected, then proceed to display the preview.
+             */
+            if (imageFilesLength > 0) {
+                /**
+                 * Get the image path.
+                 */
+                const imageSrc = URL.createObjectURL(imageFiles[0]);
+                /**
+                 * Select the image preview element.
+                 */
+                const imagePreviewElement = document.querySelector("#preview-selected-image");
+                /**
+                 * Assign the path to the image preview element.
+                 */
+                imagePreviewElement.src = imageSrc;
+                /**
+                 * Show the element by changing the display value to "block".
+                 */
+                imagePreviewElement.style.display = "block";
+            }
+        };
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable();
+        });
+    </script>
+</body>
+
+</html>
